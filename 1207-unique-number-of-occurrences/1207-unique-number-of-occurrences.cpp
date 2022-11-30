@@ -13,6 +13,8 @@ public:
                     count++;
                 }
             }
+            
+            //store the value of count in ans vector
             ans.push_back(count);
             i = i + count;
         }
