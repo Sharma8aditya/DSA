@@ -12,20 +12,23 @@
 class Solution {
 public:
     bool isSymmetric(TreeNode* root) {
-        
-        if(root == nullptr) return true;
-        //move to left andright simultaneously
-        return isSymmetric(root->left,root->right);
+        if(root == NULL){
+            return false;
+        }
+       return isSym(root->left, root->right); 
     }
     
-    bool isSymmetric(TreeNode* leftroot,TreeNode* rightroot){
-        //return true if both are same
-        if(!leftroot && !rightroot)  return true;
+    bool isSym(TreeNode* leftroot, TreeNode* rightroot){
+        if(!leftroot && !rightroot){
+            return true;
+        }
+        if(!leftroot || !rightroot){
+            return false;
+        }
         
-        if(!leftroot || !rightroot)  return false;
-        
-        if(leftroot->val != rightroot->val)  return false;
-        //if both true return true
-        return isSymmetric(leftroot->left, rightroot->right) && isSymmetric(leftroot->right, rightroot->left);
+        if(leftroot->val != rightroot->val){
+            return false;
+        }
+        return isSym(leftroot->left , rightroot->right) && isSym(leftroot->right , rightroot->left);
     }
 };
