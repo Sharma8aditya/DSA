@@ -18,6 +18,7 @@ public:
         invertTree(root->left);
         invertTree(root->right);
         
+        //swapping
         TreeNode* temp = root->left;
         root->left = root->right;
         root->right = temp;
