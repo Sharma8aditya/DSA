@@ -10,19 +10,29 @@
  * };
  */
 class Solution {
-    void recursion(TreeNode* root, int level, vector<int>& res){
-        if(!root) return;
-        if(res.size() == level){             //if size equals then add node to vector
-            res.push_back(root->val);
-        }
-        
-        recursion(root->right, level + 1, res);
-        recursion(root->left, level + 1, res);
-    }
 public:
     vector<int> rightSideView(TreeNode* root) {
-        vector<int> res;
-        recursion(root, 0, res);
-        return res;
+        //take a queue , helper vector, output vector
+        vector<int> out;
+        queue<TreeNode*> q;
+        q.push(root);
+        if(!root){
+            return out;
+        }
+        while(!q.empty()){
+            vector<int> helper;
+            int n = q.size();
+            for(int i = 0; i<n;i++){
+                TreeNode* node = q.front();
+                q.pop();
+                helper.push_back(node->val);
+                if(node->left)  q.push(node->left);
+                if(node->right)  q.push(node->right);
+            }
+            
+            //copy the last element of helper vector in th out vector bcz it's the right side element
+            out.push_back(helper[n-1]);
+        }
+        return out;
     }
 };
