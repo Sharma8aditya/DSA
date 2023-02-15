@@ -8,7 +8,7 @@ public:
             if(i>1){
                 take += prev2;
             }
-            int nontake = 0 + prev;
+            int nontake = prev;
             int curi = max(take, nontake);
             prev2 = prev;
             prev = curi;
