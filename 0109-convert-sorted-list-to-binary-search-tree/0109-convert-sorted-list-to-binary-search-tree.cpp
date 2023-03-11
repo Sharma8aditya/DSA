@@ -33,7 +33,7 @@ public:
         return fun(v, 0, v.size() - 1);
     }
     
-    TreeNode* fun(vector<int> v, int l, int r){
+    TreeNode* fun(vector<int>& v, int l, int r){
         if(l> r){
             return NULL;
         }
