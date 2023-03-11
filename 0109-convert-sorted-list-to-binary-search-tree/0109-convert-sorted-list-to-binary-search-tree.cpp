@@ -21,31 +21,29 @@
  */
 class Solution {
 public:
-    TreeNode* help(vector<int>& vec, int left, int right){
-        if(left > right){
-            return NULL;
-        }
-        int mid = (left + right)/2;
-        
-        //root node will be the middle element of linked list
-        TreeNode* res = new TreeNode(vec[mid]);
-        
-        //left part will be left subtree
-        res->left = help(vec, left, mid-1);
-        
-        //right part will be right subtree
-        res->right = help(vec, mid+1, right);
-        
-        return res;
-         
-    }
-    
     TreeNode* sortedListToBST(ListNode* head) {
+        
+        //convert linked list to array
         vector<int> v;
-        while (head) {
+        while(head){
             v.push_back(head->val);
             head = head->next;
         }
-        return help(v, 0, v.size() - 1);
+        
+        return fun(v, 0, v.size() - 1);
+    }
+    
+    TreeNode* fun(vector<int> v, int l, int r){
+        if(l> r){
+            return NULL;
+        }
+        int mid = l + (r-l)/2;
+        
+        TreeNode* node = new TreeNode(v[mid]);
+        
+        node->left = fun(v, l, mid - 1);
+        node->right = fun(v, mid + 1, r);
+        
+        return node;
     }
 };
