@@ -2,16 +2,15 @@ class Solution {
 public:
     int addDigits(int n) {
         int temp = 0;
-        //int sum = 0;
-        while(n>0){
-            temp += n%10;
-            n = n/10;
+        //divisiblity by 9 (digital root approach)
+        if(n == 0){
+            return 0;
         }
-        if(temp < 10){
-            return temp;
+        else if(n%9 == 0){
+            return 9;
         }
         else{
-            return addDigits(temp);
+            return n%9;
         }
     }
 };
