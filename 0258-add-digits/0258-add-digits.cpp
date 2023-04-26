@@ -1,8 +1,6 @@
 class Solution {
 public:
     int addDigits(int n) {
-        int temp = 0;
-        //divisiblity by 9 (digital root approach)
         if(n == 0){
             return 0;
         }
