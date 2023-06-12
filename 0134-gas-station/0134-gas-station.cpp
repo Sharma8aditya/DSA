@@ -1,24 +1,19 @@
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        int n=gas.size();
-        int total_gas=0,total_cost=0;
-        int curr_gas=0, starting_point=0;
-        for(int i=0;i<n;i++)
-        {
-            //these two variable are to check if no case is possible
-            total_gas+=gas[i];
-            total_cost+=cost[i];
-            //for checking the total present gas at index i
-            curr_gas+=gas[i]-cost[i];
-            if(curr_gas<0)
-            {
-               //there is a breakdown....so we will start from next point or index
-                starting_point=i+1;
-                //reset our fuel 
-                curr_gas=0;
+        int ans = 0;
+        if(accumulate(gas.begin(), gas.end(),0) < accumulate(cost.begin(), cost.end(),0)){
+            return -1;
+        }
+        int n = gas.size();
+        int remaining_fuel = 0;
+        for(int i = 0;i<n;i++){
+            remaining_fuel += gas[i] - cost[i];
+            if(remaining_fuel < 0){        //if this condition occurs then that index can't be the answer
+                ans = i+1;
+                remaining_fuel = 0;
             }
         }
-        return (total_gas<total_cost)?-1:starting_point;     
+        return ans;
     }
 };
