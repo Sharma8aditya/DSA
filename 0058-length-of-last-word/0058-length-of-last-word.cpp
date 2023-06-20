@@ -1,20 +1,20 @@
 class Solution {
 public:
     int lengthOfLastWord(string s) {
-        int count = 0;
+        int n = s.length();
+        int cnt = 0;
         bool flag = false;
-        for(int i = s.length()-1;i>-1;i--){
+        for(int i = n-1;i>=0;i--){
             if((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')){
                 flag = true;
-                count++;
+                cnt++;
             }
             else{
                 if(flag == true){
-                    return count;
+                    return cnt;
                 }
             }
-            
         }
-        return count;
+        return cnt;
     }
 };
