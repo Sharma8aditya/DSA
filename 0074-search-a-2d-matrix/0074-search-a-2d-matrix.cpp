@@ -1,14 +1,16 @@
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-      int n=matrix.size();  int i=0,j=matrix[0].size()-1;
+        //we can apply binary search here because it is already sorted
+        int i = 0, j = matrix[0].size()-1, n= matrix.size();
         while(i<n && j>=0){
-            if(matrix[i][j]==target){
-              return true;
+            if(matrix[i][j] == target){
+                return true;
             }
-            if(matrix[i][j]>target){
+            else if(matrix[i][j] > target){
                 j--;
-            }else{
+            }
+            else{
                 i++;
             }
         }
